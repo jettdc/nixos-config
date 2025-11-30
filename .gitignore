@@ -1,6 +1,11 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
 result
 result-*
-
-# Ignore automatically generated direnv output
+*.drv
+.nix-*.lock
 .direnv
+.DS_Store
+Thumbs.db
+
+# Ignore everything in secrets except template files
+secrets/*
+!secrets/*.template.nix
