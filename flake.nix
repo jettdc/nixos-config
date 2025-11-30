@@ -3,12 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      agenix,
       ...
     }:
     {
@@ -16,6 +18,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/mothership/configuration.nix
+          agenix.nixosModules.default
         ];
       };
     };

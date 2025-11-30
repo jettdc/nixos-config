@@ -1,29 +1,24 @@
-{ hostName, config, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  hostName,
+  ...
+}:
 
 let
-  wifiFile = ../secrets/wifi.nix;
-  wifi =
-    if builtins.pathExists wifiFile then
-      import wifiFile
-    else
-      builtins.trace "⚠️ Warning: secrets/wifi.nix not found, wireless will not be configured" null;
+  secrets = import (config.age.secrets."secrets/secrets.age".path);
 in
 {
   networking = {
     hostName = hostName;
-    wireless =
-      if wifi != null then
-        {
-          enable = true;
-          networks = {
-            "${wifi.ssid}".psk = wifi.psk;
-          };
-        }
-      else
-        { };
+    wireless = {
+      enable = true;
+      networks = {
+        "${secrets.wifi.ssid}".psk = secrets.wifi.psk;
+      };
+    };
   };
 
-  networking.firewall = {
-    enable = true;
-  };
+  networking.firewall.enable = true;
 }

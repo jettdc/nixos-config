@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  users = import ../secrets/admin.nix;
+  secrets = import (config.age.secrets."secrets/secrets.age".path);
 in
 {
   time.timeZone = "America/Denver";
@@ -13,6 +13,11 @@ in
     extraGroups = [ "wheel" ];
     shell = pkgs.bash;
     home = "/home/admin";
-    hashedPassword = users.admin.hashedPassword;
+    hashedPassword = secrets.users.admin.hashedPassword;
   };
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

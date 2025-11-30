@@ -6,6 +6,5 @@ result-*
 .DS_Store
 Thumbs.db
 
-# Ignore everything in secrets except template files
-secrets/*
-!secrets/*.template.nix
+secrets/*.prod.nix
+todo
