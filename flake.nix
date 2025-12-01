@@ -17,8 +17,8 @@
       nixosConfigurations.mothership = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/mothership/configuration.nix
           agenix.nixosModules.default
+          ./hosts/mothership/configuration.nix
         ];
       };
     };

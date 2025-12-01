@@ -7,7 +7,7 @@
 }:
 
 let
-  secrets = import (config.age.secrets."secrets/secrets.age".path);
+  secrets = import (config.age.secrets.secrets.path);
 in
 {
   networking = {

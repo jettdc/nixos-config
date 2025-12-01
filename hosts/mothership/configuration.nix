@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  agenix,
   ...
 }:
 
@@ -12,9 +13,10 @@ let
   };
 in
 {
+  age.secrets.secrets.file = ../../secrets/secrets.age;
+
   imports = [
     ./hardware-configuration.nix
-    ../../secrets/secrets.nix
     networkingModule
     ../../modules/ssh.nix
     ../../modules/default-dev-environment.nix

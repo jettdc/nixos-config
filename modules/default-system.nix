@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
-  secrets = import (config.age.secrets."secrets/secrets.age".path);
+  secrets = import (config.age.secrets.secrets.path);
 in
 {
   time.timeZone = "America/Denver";
